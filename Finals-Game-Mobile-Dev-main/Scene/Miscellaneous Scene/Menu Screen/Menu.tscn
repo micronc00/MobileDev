@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Asset/Miscellaneous Asset/ChiKareGo2.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Asset/Miscellaneous Asset/Menu GUI/Start_Button.png" type="Texture" id=2]
@@ -9,6 +9,21 @@
 [ext_resource path="res://Asset/Miscellaneous Asset/Menu GUI/Setting_Large_Button.png" type="Texture" id=7]
 [ext_resource path="res://Script/Miscellaneous Script/Menu Screen Script/Menu.gd" type="Script" id=8]
 [ext_resource path="res://Asset/Miscellaneous Asset/Menu GUI/istockphoto-1333010525-170667a.jpg" type="Texture" id=9]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform float height = 5.0;
+uniform float speed = 5.0;
+
+void vertex() {
+	VERTEX.y += height * sin(speed * TIME);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/height = 5.0
+shader_param/speed = 5.0
 
 [sub_resource type="DynamicFont" id=1]
 size = 29
@@ -29,6 +44,7 @@ __meta__ = {
 }
 
 [node name="Title" type="CenterContainer" parent="."]
+material = SubResource( 3 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -320.0
