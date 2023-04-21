@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Asset/Miscellaneous Asset/ChiKareGo2.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Asset/Miscellaneous Asset/Menu GUI/Start_Button.png" type="Texture" id=2]
@@ -10,18 +10,23 @@
 [ext_resource path="res://Script/Miscellaneous Script/Menu Screen Script/Menu.gd" type="Script" id=8]
 [ext_resource path="res://Asset/Miscellaneous Asset/Menu GUI/istockphoto-1333010525-170667a.jpg" type="Texture" id=9]
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 4 )
+
+[sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
 
 uniform float height = 5.0;
 uniform float speed = 5.0;
 
 void vertex() {
-	VERTEX.y += height * sin(speed * TIME);
+	VERTEX.y += height * sin((UV.x) + speed * TIME);
 }"
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
 shader_param/height = 5.0
 shader_param/speed = 5.0
 
@@ -47,15 +52,16 @@ __meta__ = {
 material = SubResource( 3 )
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -320.0
-margin_top = 24.0
-margin_right = 320.0
-margin_bottom = 114.0
+margin_left = -318.0
+margin_top = 20.0
+margin_right = 322.0
+margin_bottom = 110.0
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Title Label" type="Label" parent="Title"]
+material = SubResource( 6 )
 margin_left = 124.0
 margin_right = 516.0
 margin_bottom = 90.0
